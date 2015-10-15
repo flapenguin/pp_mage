@@ -13,4 +13,6 @@ int main() {
 
   assert(PP_CONTAINER_OF(pbar, struct foo_t, bar) == &foo);
   assert(PP_CONTAINER_OF(pbaz, foo_t, baz) == &foo);
+
+  return 0;
 }
