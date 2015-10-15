@@ -5,7 +5,7 @@ export CC
 all: tests
 
 tests:
-	./tests/run_preprocessor_tests.sh || (exit 1)
+	bash ./tests/run_preprocessor_tests.sh || (exit 1)
 	mkdir -p tests/build
 
 	gcc tests/containerof_test.c -Iinclude -o tests/build/containerof_test
