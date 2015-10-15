@@ -1,5 +1,7 @@
 # PP_MAGE - preprocessor magic for your sources
 
+[![Build Status](https://travis-ci.org/flapenguin/pp_mage.svg)](https://travis-ci.org/flapenguin/pp_mage)
+
 ## Overview
 This **header-only** library for C and C++ provides number of usefull macros you can use to simplify your sources.
 
