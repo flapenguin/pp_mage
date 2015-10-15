@@ -1,0 +1,10 @@
+#define ADD_BAR(T) T ## bar
+
+[Functional]
+PP_CONCAT(foo, bar) == foobar
+PP_ID(foo) == foo
+PP_APPLY(ADD_BAR, foo) == foobar
+PP_APPLY(PP_CONCAT, foo, bar) == foobar
+PP_MAP(ADD_BAR, foo, baz, quux, baz) == foobar bazbar quuxbar bazbar
+PP_NARG() == 0
+PP_NARG(1, 2, 3, 4) == 4
