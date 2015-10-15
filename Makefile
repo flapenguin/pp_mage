@@ -6,3 +6,7 @@ all: tests
 
 tests:
 	./tests/run_preprocessor_tests.sh || (exit 1)
+	mkdir -p tests/build
+
+	gcc tests/containerof_test.c -Iinclude -o tests/build/containerof_test
+	tests/build/containerof_test || (exit 1)

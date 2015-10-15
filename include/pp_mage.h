@@ -1,6 +1,8 @@
 #ifndef _PP_MAGE_
 #define _PP_MAGE_
 
+#include <stddef.h>
+
 // Boolean logic
 #define PP_TRUE _PP_TRUE
 #define PP_FALSE _PP_FALSE
@@ -34,19 +36,7 @@
 #define PP_NARG(...) _PP_EXPAND(_xPP_NARG_IMPL(dummy,##__VA_ARGS__,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0))
 
 // Collections
-#define PP_CONTAINER_OF(Ptr, Type, Member) ( (Type*)((char*)Ptr - (char*)offsetof(Type, Member)) )
-
-/*
-    Usage:
-        #define MY_COLLECTION_FOREACH(Collection, IteratorName) \
-            for (int PP_FOREACH_AUTO_ID = Collection->low; PP_FOREACH_AUTO_ID < Colliection->hi; PP_FOREACH_AUTO_ID++) \
-                PP_FOREACH_BODY(collection_node*, IteratorName, Collection->get_by_id(PP_FOREACH_AUTO_ID), IteratorName->active)
-*/
-#define PP_FOREACH_AUTO_ID _pp_foreach_id_ ## __LINE__
-#define PP_FOREACH_BODY(Type, Entry, Generator, Filter) \
-        for (int _PP_FOREACH_CONTINUE = 1; _PP_FOREACH_CONTINUE;) \
-            for (Type Entry = Generator; _PP_FOREACH_CONTINUE;) \
-                if (!(Filter)) {} else for (; _PP_FOREACH_CONTINUE; _PP_FOREACH_CONTINUE = 0)
+#define PP_CONTAINER_OF(Ptr, Type, Member) ( (Type*)((char*)(Ptr) - (char*)offsetof(Type, Member)) )
 
 // ... Implementation details ...
 #define _PP_NOT_PP_TRUE PP_FALSE
@@ -100,7 +90,5 @@
 #define _PP_MAP_16(Fn, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16)\
     Fn(_1 ) Fn(_2 ) Fn(_3 ) Fn(_4 ) Fn(_5 ) Fn(_6 ) Fn(_7 ) Fn(_8 ) \
     Fn(_9 ) Fn(_10) Fn(_11) Fn(_12) Fn(_13) Fn(_14) Fn(_15) Fn(_16)
-
-#define _PP_FOREACH_CONTINUE _foreach_iterated_ ## __LINE__
 
 #endif
